@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 
 export default {
   setup() {
