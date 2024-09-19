@@ -1,7 +1,9 @@
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import LocationView from "../views/location.vue"
-import HomeView from '../views/home.vue' // 假設你有一個 home.vue 文件
+import HomeView from '../views/home.vue' 
+import fbLogin from '../components/fblogin.vue' 
+import privacy from '../components/privacy.vue' 
 
 const routes = [
     {
@@ -13,6 +15,16 @@ const routes = [
         path: '/location',
         name: 'location',
         component: LocationView
+    },
+    {
+        path: '/fblogin',
+        name: 'fbLogin',
+        component: fbLogin
+    },
+    {
+        path: '/privacy',
+        name: 'privacy',
+        component: privacy
     },
     {
         path: '/:pathMatch(.*)*', // 捕捉所有未定義路徑，防止404
