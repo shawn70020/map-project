@@ -6,7 +6,7 @@
 <script>
 import { onMounted, ref, watch } from "vue";
 import L from "leaflet";
-import "leaflet/dist/leaflet.css";
+// import "leaflet/dist/leaflet.css";
 
 export default {
   props: {
