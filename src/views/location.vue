@@ -29,7 +29,7 @@
 import axios from "axios";
 import { ref, onMounted } from "vue";
 import { geocodeAddress } from "../utils.js";
-import MapDisplay from "../components/MapDisplay.vue"; // 引入地圖組件
+import MapDisplay from "../components/mapDisplay.vue"; // 引入地圖組件
 
 export default {
   components: { MapDisplay },
