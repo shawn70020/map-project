@@ -4,6 +4,8 @@ import LocationView from "../views/location.vue"
 import HomeView from '../views/home.vue' 
 import fbLogin from '../components/fblogin.vue' 
 import privacy from '../components/privacy.vue' 
+import googlelogin from '../components/googlelogin.vue' 
+import callbackGo from '../components/callback-go.vue' 
 
 const routes = [
     {
@@ -25,6 +27,16 @@ const routes = [
         path: '/privacy',
         name: 'privacy',
         component: privacy
+    },
+    {
+        path: '/googlelogin',
+        name: 'googlelogin',
+        component: googlelogin
+    },
+    {
+        path: '/callbackGo',
+        name: 'callbackGo',
+        component: callbackGo
     },
     {
         path: '/:pathMatch(.*)*', // 捕捉所有未定義路徑，防止404
