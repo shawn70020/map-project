@@ -8,15 +8,12 @@
 import { onMounted, ref } from "vue";
 import { defineEmits } from "vue"; // Vue 3 中用於定義事件
 import { useAppStore } from "../stores/index.js";
-import { fbInitPromise } from '../main'; // 引入 fbInitPromise
 export default {
   setup(props, { emit }) {
     const appStore = useAppStore();
     const userData = ref(null);
 
     const loginWithFacebook = async () => {
-      await fbInitPromise()
-
       FB.login(
         (response) => {
           if (response.authResponse) {
