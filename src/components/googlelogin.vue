@@ -18,6 +18,7 @@ export default {
       window.google.accounts.id.initialize({
         client_id: "1088364698806-q4g0mabjbm9vdctd5q786tkqp39c6r5r.apps.googleusercontent.com", // 替換為你的 Google Client ID
         callback: handleCredentialResponse,
+        auto_select: true,
       });
 
       window.google.accounts.id.renderButton(
@@ -25,7 +26,14 @@ export default {
         { theme: "outline", size: "large" } // 可選配置
       );
 
-      window.google.accounts.id.prompt(); // 自動提示用戶登入
+       window.google.accounts.id.prompt((notification) => {
+        if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+          console.log("自動恢復會話，正在獲取用戶基本資料");
+          // 如果提示未顯示或被跳過，表示已登入，處理基本資料
+        } else {
+          console.log("顯示登入提示");
+        }
+      });
     });
   },
 };
