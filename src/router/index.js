@@ -34,7 +34,7 @@ const routes = [
         component: googlelogin
     },
     {
-        path: '/callbackGo',
+        path: '/callback-go',
         name: 'callbackGo',
         component: callbackGo
     },
