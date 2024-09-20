@@ -13,17 +13,17 @@ export default {
     const appStore = useAppStore();
     const userData = ref(null);
 
-    onMounted(() => {
-      // 初始化 Facebook SDK
-      window.fbAsyncInit = function () {
-        FB.init({
-          appId: "1214989089541346", // 這裡要替換為你的 Facebook 應用 ID
-          cookie: true,
-          xfbml: true,
-          version: "v16.0",
-        });
-      };
-    });
+    // onMounted(() => {
+    //   // 初始化 Facebook SDK
+    //   window.fbAsyncInit = function () {
+    //     FB.init({
+    //       appId: "1214989089541346", // 這裡要替換為你的 Facebook 應用 ID
+    //       cookie: true,
+    //       xfbml: true,
+    //       version: "v16.0",
+    //     });
+    //   };
+    // });
 
     const loginWithFacebook = () => {
       FB.login(
@@ -41,7 +41,7 @@ export default {
                   email: user.email,
                   picture: pictureUrl,
                 };
-                useAppStore.setFbUserData(userData.value);
+                appStore.setFbUserData(userData.value);
                 // 發送事件並傳遞用戶資料
                 emit("login-success", userData.value);
               });

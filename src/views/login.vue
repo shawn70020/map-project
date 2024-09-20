@@ -3,7 +3,6 @@
     <h1>使用者登入</h1>
 
     <div v-if="isGoogleLoggedIn || isFacebookLoggedIn">
-
       <div v-if="!isFacebookLoggedIn">
         <p>您還需要使用 Facebook 登入以完成設置。</p>
       </div>
@@ -22,27 +21,38 @@
       <GoogleLogin />
       <FacebookLogin />
     </div>
+    <div>
+      {{ googleData }}
+    </div>
+    <div>
+      {{ fbData }}
+    </div>
   </div>
 </template>
 
 <script>
-import { ref } from "vue";
+import { computed } from "vue";
 import GoogleLogin from "../components/googlelogin.vue"; // 引入google組件
 import FacebookLogin from "../components/fblogin.vue"; // 引入臉書組件
-
-import { useAppStore } from "../stores/index.js";
+import { useAppStore } from "../stores/index.js"; // 引入 Pinia store
 
 export default {
   components: { GoogleLogin, FacebookLogin },
   setup() {
     const appStore = useAppStore();
-    const userData = ref(null);
-    const isGoogleLoggedIn = ref(false);
-    const isFacebookLoggedIn = ref(false);
+
+    // 使用 computed 來自動響應 Pinia store 中的狀態變化
+    const isGoogleLoggedIn = computed(() => appStore.isGoogleLoggedIn);
+    const isFacebookLoggedIn = computed(() => appStore.isFacebookLoggedIn);
+
+    const googleData = computed(() => appStore.googleUserData);
+    const fbData = computed(() => appStore.fbUserData);
 
     return {
-      isGoogleLoggedIn: appStore.isGoogleLoggedIn, // 使用 getter 獲取 Google 登入狀態
-      isFacebookLoggedIn: appStore.isFacebookLoggedIn, // 使用 getter 獲取 Facebook 登入狀態
+      isGoogleLoggedIn, // 使用 getter 獲取 Google 登入狀態
+      isFacebookLoggedIn, // 使用 getter 獲取 Facebook 登入狀態
+      googleData,
+      fbData,
     };
   },
 };

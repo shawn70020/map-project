@@ -13,10 +13,12 @@
 import { ref, onMounted } from "vue";
 import { jwtDecode } from "jwt-decode";
 import { useAppStore } from "../stores/index.js";
+import { useRouter } from 'vue-router';
 export default {
   setup() {
     const appStore = useAppStore();
     const userData = ref(null);
+    const router = useRouter();
 
     onMounted(() => {
       const params = new URLSearchParams(window.location.search);
@@ -30,7 +32,8 @@ export default {
             email: userObject.email,
             picture: userObject.picture,
           };
-          useAppStore.setGoogleUserData(userData.value);
+          appStore.setGoogleUserData(userData.value);
+          router.push("/login");
         } catch (error) {
           console.error("解碼憑證時發生錯誤", error);
         }
