@@ -24,30 +24,20 @@ const pinia = createPinia();
   js = d.createElement(s); js.id = id;
   js.src = "https://connect.facebook.net/en_US/sdk.js";
   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk')
-);
-
+}(document, 'script', 'facebook-jssdk'));
 
 window.fbAsyncInit = function () {
-
   FB.init({
-    appId: '1214989089541346',
+    appId: '1214989089541346', // 替換為你的 Facebook 應用 ID
     xfbml: true,
-    version: 'v16.0'
+    cookie: true, // 啟用 cookie 來管理會話
+    version: 'v16.0' // Facebook Graph API 的版本
   });
-
-  FB.login(function (response) {
-    if (response.authResponse) {
-      console.log('Welcome!  Fetching your information.... ');
-      FB.api('/me', { fields: 'name, email' }, function (response) {
-        document.getElementById("profile").innerHTML = "Good to see you, " + response.name + ". i see your email address is " + response.email
-      });
-    } else {
-
-      console.log('User cancelled login or did not fully authorize.');
-    }
-  });
+  
+  console.log('Facebook SDK initialized');
 };
+
+
 
 createApp(App)
   .use(router)
