@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import LocationView from "../views/location.vue"
 import HomeView from '../views/home.vue' 
+import login from '../views/login.vue' 
 import fbLogin from '../components/fblogin.vue' 
 import privacy from '../components/privacy.vue' 
 import googlelogin from '../components/googlelogin.vue' 
@@ -17,6 +18,11 @@ const routes = [
         path: '/location',
         name: 'location',
         component: LocationView
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: login
     },
     {
         path: '/fblogin',

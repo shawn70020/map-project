@@ -12,9 +12,10 @@
 <script>
 import { ref, onMounted } from "vue";
 import { jwtDecode } from "jwt-decode";
-
+import { useAppStore } from "../stores/index.js";
 export default {
   setup() {
+    const appStore = useAppStore();
     const userData = ref(null);
 
     onMounted(() => {
@@ -29,6 +30,7 @@ export default {
             email: userObject.email,
             picture: userObject.picture,
           };
+          useAppStore.setGoogleUserData(userData.value);
         } catch (error) {
           console.error("解碼憑證時發生錯誤", error);
         }
