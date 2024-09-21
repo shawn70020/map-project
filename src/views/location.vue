@@ -33,7 +33,7 @@
 
 <script>
 import axios from "axios";
-import { ref, onMounted, reactive } from "vue";
+import { ref, onMounted } from "vue";
 import { geocodeAddress } from "../utils.js";
 import MapDisplay from "../components/mapDisplay.vue"; // 引入地圖組件
 
@@ -44,7 +44,7 @@ export default {
     const searchLocation = ref("");
     const nearbyList = ref([]);
     const selectedLocationId = ref(null);
-    const userLocation = reactive({});
+    const userLocation = ref({});
     onMounted(async () => {
       try {
         await fetchLocationData();
@@ -87,7 +87,7 @@ export default {
           );
 
           // 呼叫 getNearLocationData，傳入轉換後的經緯度
-          userLocation = {
+          userLocation.value = {
             lat: transforlocation.lat,
             lng: transforlocation.lng,
           };
