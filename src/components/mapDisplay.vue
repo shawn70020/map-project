@@ -140,15 +140,19 @@ export default {
 
               // 自定義 tooltip 的內容，顯示 Google 和 Facebook 頭像
               const tooltipContent = `
-                <div style="display: flex; align-items: center;">
-                  <div style="margin-right: 8px;">
-                    <img src="${appStore.googleUserData.picture}" alt="Google Avatar" style="width: 40px; height: 40px; border-radius: 50%;" />
-                  </div>
-                  <div>
-                    <img src="${appStore.fbUserData.picture}" alt="Facebook Avatar" style="width: 40px; height: 40px; border-radius: 50%;" />
-                  </div>
-                </div>
-              `;
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <div style="font-weight: bold; margin-bottom: 8px;">您的位置</div>
+    <div style="display: flex; align-items: center;">
+      <div style="margin-right: 8px;">
+        <img src="${appStore.googleUserData.picture}" alt="Google Avatar" style="width: 40px; height: 40px; border-radius: 50%;" />
+      </div>
+      <div>
+        <img src="${appStore.fbUserData.picture}" alt="Facebook Avatar" style="width: 40px; height: 40px; border-radius: 50%;" />
+      </div>
+    </div>
+  </div>
+`;
+
 
               // 綁定 tooltip 到使用者標記
               userMarker
