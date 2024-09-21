@@ -5,6 +5,7 @@
       :geojsonData="geojsonData"
       :locationData="nearbyList"
       :selectedLocationId="selectedLocationId"
+      :userPosition="userLocation"
     />
 
     <div class="box-list">
@@ -32,7 +33,7 @@
 
 <script>
 import axios from "axios";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, reactive } from "vue";
 import { geocodeAddress } from "../utils.js";
 import MapDisplay from "../components/mapDisplay.vue"; // 引入地圖組件
 
@@ -43,6 +44,7 @@ export default {
     const searchLocation = ref("");
     const nearbyList = ref([]);
     const selectedLocationId = ref(null);
+    const userLocation = reactive({});
     onMounted(async () => {
       try {
         await fetchLocationData();
@@ -85,6 +87,10 @@ export default {
           );
 
           // 呼叫 getNearLocationData，傳入轉換後的經緯度
+          userLocation = {
+            lat: transforlocation.lat,
+            lng: transforlocation.lng,
+          };
           await getNearLocationData(transforlocation.lat, transforlocation.lng);
         } catch (error) {
           console.error("地理編碼失敗:", error);
@@ -148,6 +154,7 @@ export default {
       fetchLocationData,
       handleSearch,
       nearbyList,
+      userLocation,
       geojsonData,
       selectLocation,
       selectedLocationId,
