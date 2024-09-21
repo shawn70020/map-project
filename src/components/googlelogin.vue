@@ -7,20 +7,31 @@
 <script>
 import { onMounted } from "vue";
 import { jwtDecode } from "jwt-decode"; // 用於解碼 ID token
-
+import { useAppStore } from "../stores/index.js";
 export default {
   setup() {
+    const appStore = useAppStore();
+    const userData = ref(null);
+
     const handleCredentialResponse = (response) => {
       // 解碼 ID Token 來獲取用戶資料
-      const decodedToken = jwtDecode(response.credential);
-      console.log("用戶基本資料:", decodedToken);
-      // 可以在這裡處理用戶的基本資料，例如展示或存儲
+      const userObject = jwtDecode(response.credential);
+      console.log("用戶基本資料:", userObject);
+
+      userData.value = {
+        name: userObject.name,
+        email: userObject.email,
+        picture: userObject.picture,
+      };
+      appStore.setGoogleUserData(userData.value);
+      console.log(userData.value);
     };
 
     onMounted(() => {
       // 初始化 Google 登入 SDK
       window.google.accounts.id.initialize({
-        client_id: "1088364698806-q4g0mabjbm9vdctd5q786tkqp39c6r5r.apps.googleusercontent.com", // 替換為你的 Google Client ID
+        client_id:
+          "1088364698806-q4g0mabjbm9vdctd5q786tkqp39c6r5r.apps.googleusercontent.com", // 替換為你的 Google Client ID
         callback: handleCredentialResponse, // 每次成功登入或恢復會話時觸發
         auto_select: true, // 自動選擇已登入帳戶
       });
