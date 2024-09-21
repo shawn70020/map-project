@@ -4,9 +4,8 @@
 
 <script>
 import { onMounted, ref, watch } from "vue";
-import { useAppStore } from "../stores/index.js"; // 引入 Pinia store
+import { useAppStore } from "../stores/index.js";
 import L from "leaflet";
-import "leaflet/dist/leaflet.css";
 
 export default {
   props: {
@@ -178,6 +177,6 @@ export default {
 #map {
   display: block;
   width: 100vw;
-  height: 750px;
+  height: 500px;
 }
 </style>

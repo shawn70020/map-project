@@ -7,7 +7,7 @@ import fbLogin from '../components/fblogin.vue'
 import privacy from '../components/privacy.vue' 
 import googlelogin from '../components/googlelogin.vue' 
 import callbackGo from '../components/callback-go.vue' 
-import { useAppStore } from '../stores/index'; // 引入 Pinia store
+import Cookies from 'js-cookie';
 
 const routes = [
     {
@@ -20,10 +20,11 @@ const routes = [
         name: 'location',
         component: LocationView,
         beforeEnter: (to, from, next) => {
-            const appStore = useAppStore(); // 獲取 Pinia store 實例
-      
+            const isFbLogin = Cookies.get('fbStatus');
+            const isGoogleLogin = Cookies.get('googleStatus');
+            
             // 檢查是否已經登入 Google 和 Facebook
-            if (!appStore.isGoogleLoggedIn || !appStore.isFacebookLoggedIn) {
+            if (!isFbLogin || !isGoogleLogin) {
               // 如果未登入，重定向到登入頁面
               next({ path: '/login' });
             } else {
