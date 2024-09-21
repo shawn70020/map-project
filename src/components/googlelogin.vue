@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { jwtDecode } from "jwt-decode"; // 用於解碼 ID token
 import { useAppStore } from "../stores/index.js";
 export default {
