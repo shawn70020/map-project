@@ -19,19 +19,19 @@ const routes = [
         path: '/location',
         name: 'location',
         component: LocationView,
-        // beforeEnter: (to, from, next) => {
-        //     const isFbLogin = Cookies.get('fbData');
-        //     const isGoogleLogin = Cookies.get('googleData');
+        beforeEnter: (to, from, next) => {
+            const isFbLogin = Cookies.get('fbData');
+            const isGoogleLogin = Cookies.get('googleData');
             
-        //     // 檢查是否已經登入 Google 和 Facebook
-        //     if (!isFbLogin || !isGoogleLogin) {
-        //       // 如果未登入，重定向到登入頁面
-        //       next({ path: '/login' });
-        //     } else {
-        //       // 已登入，允許導航
-        //       next();
-        //     }
-        //   },
+            // 檢查是否已經登入 Google 和 Facebook
+            if (!isFbLogin || !isGoogleLogin) {
+              // 如果未登入，重定向到登入頁面
+              next({ path: '/login' });
+            } else {
+              // 已登入，允許導航
+              next();
+            }
+          },
     },
     {
         path: '/login',

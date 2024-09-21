@@ -27,7 +27,7 @@ export default {
 
       if (credential) {
         try {
-          const userObject = jwtDecode(credential); // 使用 jwt_decode 函數解碼憑證
+          const userObject = jwtDecode(credential); 
           userData.value = {
             name: userObject.name,
             email: userObject.email,
