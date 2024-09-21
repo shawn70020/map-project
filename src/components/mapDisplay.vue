@@ -4,6 +4,7 @@
 
 <script>
 import { onMounted, ref, watch } from "vue";
+import { useAppStore } from "../stores/index.js";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -35,6 +36,7 @@ export default {
     },
   },
   setup(props) {
+    const appStore = useAppStore();
     const map = ref(null);
     const markers = ref({}); // 用於存儲所有標記
 
@@ -48,26 +50,30 @@ export default {
       }).addTo(map.value);
 
       // 在使用者的位置添加一個標記並顯示 Google 和 Facebook 頭像的 Tooltip
-      const userMarker = L.marker([props.userPosition.lat, props.userPosition.lng]).addTo(map.value);
+      const userMarker = L.marker([props.userPosition.lat, props.userPosition.lng]).addTo(
+        map.value
+      );
 
       // 定義 tooltip 的內容，顯示 Google 和 Facebook 頭像
       const tooltipContent = `
         <div style="display: flex; align-items: center;">
           <div style="margin-right: 8px;">
-            <img src="${props.googleAvatar}" alt="Google Avatar" style="width: 40px; height: 40px; border-radius: 50%;" />
+            <img src="${appStore.googleUserData.picture}" alt="Google Avatar" style="width: 40px; height: 40px; border-radius: 50%;" />
           </div>
           <div>
-            <img src="${props.facebookAvatar}" alt="Facebook Avatar" style="width: 40px; height: 40px; border-radius: 50%;" />
+            <img src="${appStore.fbUserData.picture}" alt="Facebook Avatar" style="width: 40px; height: 40px; border-radius: 50%;" />
           </div>
         </div>
       `;
 
       // 綁定 tooltip 到使用者標記
-      userMarker.bindTooltip(tooltipContent, {
-        permanent: true, // 設置 tooltip 永久顯示
-        direction: 'top', // tooltip 顯示在標記的上方
-        offset: L.point(0, -10), // 調整 tooltip 的位置
-      }).openTooltip();
+      userMarker
+        .bindTooltip(tooltipContent, {
+          permanent: true, // 設置 tooltip 永久顯示
+          direction: "top", // tooltip 顯示在標記的上方
+          offset: L.point(0, -10), // 調整 tooltip 的位置
+        })
+        .openTooltip();
 
       // 繪製多邊形
       watch(

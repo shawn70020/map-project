@@ -18,7 +18,7 @@
 
     <div v-if="isGoogleLoggedIn && isFacebookLoggedIn">
       <p>您已經成功登入 Google 和 Facebook!</p>
-      <button><router-link to="/">繼續</router-link></button>
+      <button><router-link to="/location">繼續</router-link></button>
     </div>
 
     <div>
