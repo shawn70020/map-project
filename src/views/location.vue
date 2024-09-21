@@ -11,7 +11,7 @@
     <div class="box-list">
       <!-- 搜尋地址 -->
       <div class="box-search">
-        <input v-model="searchLocation" placeholder="請輸入新北地址" class="box-search" />
+        <input v-model="searchLocation" placeholder="請輸入新北地址" class="search-input" />
         <img
           src="../../public/img/search.svg"
           class="search-icon"
