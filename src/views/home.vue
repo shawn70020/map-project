@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <h1>新北市都市更新地點</h1>
-      <button><router-link to="/location">開始</router-link></button>
+  <div class="container">
+    <h1>新北市都市更新地點查詢</h1>
+  <router-link to="/location" tag="button">
+    開始
+  </router-link>
   </div>
 </template>
 
@@ -10,3 +12,8 @@ export default {
   name: "home",
 };
 </script>
+<style scoped>
+.container{
+  text-align:center
+}
+</style>

@@ -23,8 +23,8 @@ export const useAppStore = defineStore('app', {
         },
         restoreUserData() {
             // 從 Cookie 中獲取資料並設置到 state 中
-            const fbData = Cookies.get('fbUserData');
-            const googleData = Cookies.get('googleUserData');
+            const fbData = Cookies.get('fbStatus');
+            const googleData = Cookies.get('googleStatus');
             this.fbUserData = fbData ? JSON.parse(fbData) : null;
             this.googleUserData = googleData ? JSON.parse(googleData) : null;
         },

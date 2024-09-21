@@ -64,7 +64,7 @@ button:focus-visible {
 .box-list ul li {
   width: 90%;
   background: white;
-  padding:0 20px;
+  padding: 0 20px;
   font-size: 32px;
   font-weight: bold;
   list-style: none;
@@ -76,7 +76,7 @@ button:focus-visible {
   justify-content: space-between;
 }
 
-.box-list ul li:hover{
+.box-list ul li:hover {
   outline: 1px solid #bebebe
 }
 
@@ -85,8 +85,41 @@ button:focus-visible {
   background-color: lightblue;
 }
 
-.blue-text{
+.blue-text {
   color: rgb(32, 85, 230);
+}
+
+.fb-logo {
+  width: 350px;
+  height: 3rem;
+  background: #4460A0;
+  border-radius: 10px;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.fb-logo img {
+  width: 30px;
+  height: 30px;
+}
+
+.google-logo {
+  width: 350px;
+  height: 3rem;
+  background: #ffffff;
+  border-radius: 10px;
+  color: black;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 1px solid black;
+}
+
+.google-logo img {
+  width: 30px;
+  height: 30px;
 }
 
 

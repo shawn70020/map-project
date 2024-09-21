@@ -1,6 +1,8 @@
 <template>
   <div>
-    <button id="google-login-btn">使用 Google 登入</button>
+    <div class="google-logo">
+      <img src="../../public/img/google-logo.png" alt="google-btn" />使用 Google 登入
+    </div>
   </div>
 </template>
 
@@ -36,12 +38,6 @@ export default {
         auto_select: true, // 自動選擇已登入帳戶
       });
 
-      // 渲染 Google 登入按鈕
-      window.google.accounts.id.renderButton(
-        document.getElementById("google-login-btn"),
-        { theme: "outline", size: "large" } // 可選配置
-      );
-
       // 檢查是否已經登入過
       window.google.accounts.id.prompt((notification) => {
         if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
@@ -56,6 +52,4 @@ export default {
 };
 </script>
 
-<style scoped>
-/* 可以添加一些樣式 */
-</style>
+<style scoped></style>

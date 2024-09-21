@@ -1,6 +1,12 @@
 <template>
   <div>
-    <button @click="loginWithFacebook">Facebook 登入</button>
+    <div class="fb-logo" @click="loginWithFacebook">
+      <img
+        src="../../public/img/fb-logo.svg"
+        alt="fb-btn"
+      />
+      使用 Facebook 登入
+    </div>
   </div>
 </template>
 
@@ -15,9 +21,9 @@ export default {
     const userData = ref(null);
 
     const statusChangeCallback = (response) => {
-      if (response.status === 'connected') {
+      if (response.status === "connected") {
         // 用戶已經登入並且授權應用
-        console.log('User is already logged in and authorized.');
+        console.log("User is already logged in and authorized.");
         fetchFacebookUserData(); // 直接獲取用戶資料
       } else {
         // 如果用戶未登入或未授權，執行登入操作

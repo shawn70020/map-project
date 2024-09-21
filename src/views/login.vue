@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <h1>使用者登入</h1>
+  <div class='container'>
+    <h2>請確保登入google且綁定facebook</h2>
     <!-- 登入選項 -->
     <div>
-      <GoogleLogin v-if="!isGoogleLoggedIn" />
+      <GoogleLogin class="mb-1" v-if="!isGoogleLoggedIn" />
       <FacebookLogin v-if="!isFacebookLoggedIn" />
     </div>
     <div v-if="isGoogleLoggedIn || isFacebookLoggedIn">
@@ -19,13 +19,6 @@
     <div v-if="isGoogleLoggedIn && isFacebookLoggedIn">
       <p>您已經成功登入 Google 和 Facebook!</p>
       <button><router-link to="/location">繼續</router-link></button>
-    </div>
-
-    <div>
-      {{ googleData }}
-    </div>
-    <div>
-      {{ fbData }}
     </div>
   </div>
 </template>
@@ -60,5 +53,12 @@ export default {
 </script>
 
 <style scoped>
-/* 可以添加一些樣式 */
+.container{
+    display:flex;
+    flex-direction: column;
+      align-items: center;
+}
+.mb-1{
+    margin-bottom:1rem;
+}
 </style>

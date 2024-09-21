@@ -34,6 +34,7 @@ export default {
 
     // 初始化地圖
     onMounted(() => {
+      appStore.restoreUserData();
       map.value = L.map("map").setView([25.033, 121.5654], 13); // 默認地圖視圖
 
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
