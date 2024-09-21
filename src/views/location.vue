@@ -6,22 +6,27 @@
       :locationData="nearbyList"
       :selectedLocationId="selectedLocationId"
     />
-    <!-- 搜尋地址 -->
-    <input v-model="searchLocation" placeholder="請輸入地址" />
-    <button @click="handleSearch">搜尋</button>
 
-    <!-- 顯示搜尋到的地點資料 -->
-    <h2>站點列表</h2>
-    <ul>
-      <li
-        v-for="location in nearbyList"
-        :key="location.id"
-        @click="selectLocation(location.id)"
-        style="cursor: pointer; margin: 5px 0"
-      >
-        {{ location.stopName }} - {{ location.distance }} 公里
-      </li>
-    </ul>
+    <div class="box-list">
+      <!-- 搜尋地址 -->
+      <div class="box-center">
+        <input v-model="searchLocation" placeholder="請輸入新北地址" />
+        <button @click="handleSearch">搜尋</button>
+      </div>
+      <!-- 顯示搜尋到的地點資料 -->
+      <h2>站點列表</h2>
+      <ul>
+        <li
+          v-for="(location, index) in nearbyList"
+          :key="location.id"
+          @click="selectLocation(location.id)"
+          :class="{ selected: selectedIndex === index }"
+        >
+          <h5>{{ location.stopName }}</h5>
+          <h5 class="blue-text">{{ location.distance }} 公里</h5>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -54,7 +59,6 @@ export default {
         ); // 替換為實際的 API URL
         const data = response.data;
 
-        // 假設你需要對數據進行一些處理，這裡可以添加整理邏輯
         geojsonData.value = {
           type: "FeatureCollection",
           features: data.result.features.map((feature) => ({
@@ -70,15 +74,21 @@ export default {
 
     // 處理地址轉換與 API 請求
     const handleSearch = async () => {
-      try {
-        // 使用地址進行經緯度轉換
-        const transforlocation = await geocodeAddress(searchLocation.value);
-        console.log(`轉換成功，經度: ${location.lng}, 緯度: ${location.lat}`);
+      // 先確認地址是否符合格式
+      if (validateInput(searchLocation.value)) {
+        try {
+          // 使用地址進行經緯度轉換
+          const transforlocation = await geocodeAddress(searchLocation.value);
 
-        // 呼叫 getNearLocationData，傳入轉換後的經緯度
-        await getNearLocationData(transforlocation.lat, transforlocation.lng);
-      } catch (error) {
-        console.error("地理編碼失敗:", error);
+          console.log(
+            `轉換成功，經度: ${transforlocation.lng}, 緯度: ${transforlocation.lat}`
+          );
+
+          // 呼叫 getNearLocationData，傳入轉換後的經緯度
+          await getNearLocationData(transforlocation.lat, transforlocation.lng);
+        } catch (error) {
+          console.error("地理編碼失敗:", error);
+        }
       }
     };
 
@@ -114,6 +124,25 @@ export default {
       selectedLocationId.value = id;
     };
 
+    const validateInput = () => {
+      // 正則表達式，只允許中文和數字
+      const regex = /^[\u4e00-\u9fa5\d]+$/;
+
+      // 移除輸入中的所有空格
+      const trimmedValue = searchLocation.value.replace(/\s+/g, "");
+
+      // 檢查修正過的輸入是否符合正則
+      if (regex.test(trimmedValue)) {
+        searchLocation.value = trimmedValue;
+        return true;
+      } else {
+        // 如果不符合條件，彈出提示但不修改輸入值
+        alert("只能輸入中文地址！");
+        searchLocation.value = "";
+        return false;
+      }
+    };
+
     return {
       searchLocation,
       fetchLocationData,
@@ -122,7 +151,16 @@ export default {
       geojsonData,
       selectLocation,
       selectedLocationId,
+      validateInput,
     };
   },
 };
 </script>
+
+<style>
+.box-center {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+</style>

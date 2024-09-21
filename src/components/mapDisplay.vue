@@ -1,26 +1,37 @@
 <template>
   <div id="map"></div>
-  <!-- 地圖容器 -->
 </template>
 
 <script>
 import { onMounted, ref, watch } from "vue";
 import L from "leaflet";
-// import "leaflet/dist/leaflet.css";
+import "leaflet/dist/leaflet.css";
 
 export default {
   props: {
     geojsonData: {
-      type: Object, // 用於接收多邊形的數據
-      required: false,
+      type: Object,
+      required: false, // 用於接收多邊形數據
     },
     locationData: {
-      type: Array, // 用於接收站點的數據
-      required: false,
+      type: Array,
+      required: false, // 用於接收站點數據
     },
     selectedLocationId: {
-      type: Number, // 用來接收使用者選中的標記的 id
-      required: false,
+      type: Number,
+      required: false, // 用於接收使用者選中的標記 id
+    },
+    userPosition: {
+      type: Object,
+      required: true, // 使用者的經緯度位置 { lat: xxx, lng: xxx }
+    },
+    googleAvatar: {
+      type: String,
+      required: true, // Google 頭像 URL
+    },
+    facebookAvatar: {
+      type: String,
+      required: true, // Facebook 頭像 URL
     },
   },
   setup(props) {
@@ -36,7 +47,29 @@ export default {
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(map.value);
 
-      // 監聽 props.geojsonData，當有數據傳入時，將其繪製多邊形到地圖上
+      // 在使用者的位置添加一個標記並顯示 Google 和 Facebook 頭像的 Tooltip
+      const userMarker = L.marker([props.userPosition.lat, props.userPosition.lng]).addTo(map.value);
+
+      // 定義 tooltip 的內容，顯示 Google 和 Facebook 頭像
+      const tooltipContent = `
+        <div style="display: flex; align-items: center;">
+          <div style="margin-right: 8px;">
+            <img src="${props.googleAvatar}" alt="Google Avatar" style="width: 40px; height: 40px; border-radius: 50%;" />
+          </div>
+          <div>
+            <img src="${props.facebookAvatar}" alt="Facebook Avatar" style="width: 40px; height: 40px; border-radius: 50%;" />
+          </div>
+        </div>
+      `;
+
+      // 綁定 tooltip 到使用者標記
+      userMarker.bindTooltip(tooltipContent, {
+        permanent: true, // 設置 tooltip 永久顯示
+        direction: 'top', // tooltip 顯示在標記的上方
+        offset: L.point(0, -10), // 調整 tooltip 的位置
+      }).openTooltip();
+
+      // 繪製多邊形
       watch(
         () => props.geojsonData,
         (newGeojsonData) => {
@@ -71,7 +104,7 @@ export default {
         { immediate: true }
       );
 
-      // 監聽 props.locationData，當有數據傳入時，將其繪製站點標記到地圖上
+      // 繪製站點標記
       watch(
         () => props.locationData,
         (newLocationData) => {
@@ -128,7 +161,8 @@ export default {
 
 <style>
 #map {
-  height: 500px;
+  display: block;
   width: 100vw;
+  height: 750px;
 }
 </style>

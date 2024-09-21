@@ -13,6 +13,7 @@
 
       <div v-if="isGoogleLoggedIn && isFacebookLoggedIn">
         <p>您已經成功登入 Google 和 Facebook!</p>
+        <button>繼續</button>
       </div>
     </div>
 
