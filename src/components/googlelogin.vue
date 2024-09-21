@@ -6,7 +6,7 @@
 
 <script>
 import { onMounted } from "vue";
-import jwt_decode from "jwt-decode"; // 用於解碼 ID token
+import { jwtDecode } from "jwt-decode"; 
 
 export default {
   setup() {
@@ -17,7 +17,7 @@ export default {
 
     const fetchUserInfo = (credential) => {
       // 解碼 ID Token 來獲取用戶資料
-      const decodedToken = jwt_decode(credential);
+      const decodedToken = jwtDecode(credential);
       console.log("用戶基本資料:", decodedToken);
       // 可以在這裡處理用戶的基本資料，例如展示或存儲
     };
