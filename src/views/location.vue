@@ -11,25 +11,28 @@
     <div class="box-list">
       <!-- 搜尋地址 -->
       <div class="box-search">
-        <input
-          v-model="searchLocation"
-          placeholder="請輸入新北地址"
-          class="search-input"
+        <input v-model="searchLocation" placeholder="請輸入新北地址" class="box-search" />
+        <img
+          src="../../public/img/search.svg"
+          class="search-icon"
+          @click="handleSearch"
+          alt="search-icon"
         />
-        <img src="../../public/img/search.svg" @click="handleSearch" alt="fb-btn" />
       </div>
       <!-- 顯示搜尋到的地點資料 -->
       <h2>站點列表</h2>
-      <div
-        v-for="(location, index) in nearbyList"
-        :key="location.id"
-        @click="selectLocation(location.id)"
-        class="stop-item"
-        :class="{ selected: selectedIndex === index }"
-      >
-        <h5>{{ location.stopName }}</h5>
-        <h5 class="blue-text">{{ location.distance }} 公里</h5>
-      </div>
+      <ul>
+        <li
+          v-for="(location, index) in nearbyList"
+          :key="location.id"
+          @click="selectLocation(location.id)"
+          class="stop-item"
+          :class="{ selected: selectedIndex === index }"
+        >
+          <h5>{{ location.stopName }}</h5>
+          <h5 class="blue-text">{{ location.distance }} 公里</h5>
+        </li>
+      </ul>
     </div>
   </div>
 </template>

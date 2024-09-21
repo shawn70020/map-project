@@ -53,15 +53,17 @@ button:focus-visible {
   padding: 2em;
 
 }
-.location-bg{
+
+.location-bg {
   background-color: #e9e7e7;
   min-height: 100vh;
   height: auto;
 }
+
 .box-list {
   width: 100%;
   text-align: center;
-  
+
   padding-top: 0.3rem;
   color: #000;
 }
@@ -92,18 +94,21 @@ button:focus-visible {
   align-items: center;
 }
 
-.box-search img{
+.box-search img {
   width: 24px;
   height: 24px;
   margin-left: 0.5rem;
 }
 
-.search-input{
+.search-input {
   width: 20rem;
-  height: 2rem;
+  height: 2.5rem;
   border-radius: 1rem;
 }
 
+.search-icon {
+  cursor: pointer;
+}
 
 .selected {
   background-color: lightblue;
