@@ -53,12 +53,17 @@ button:focus-visible {
   padding: 2em;
 
 }
-
+.location-bg{
+  background-color: #e9e7e7;
+  min-height: 100vh;
+  height: auto;
+}
 .box-list {
   width: 100%;
   text-align: center;
-  background-color: #e9e7e7;
+  
   padding-top: 0.3rem;
+  color: #000;
 }
 
 .box-list ul li {
@@ -78,6 +83,25 @@ button:focus-visible {
 
 .box-list ul li:hover {
   outline: 1px solid #bebebe
+}
+
+.box-search {
+  display: flex;
+  margin-top: 2rem;
+  margin-left: 2.5rem;
+  align-items: center;
+}
+
+.box-search img{
+  width: 24px;
+  height: 24px;
+  margin-left: 0.5rem;
+}
+
+.search-input{
+  width: 20rem;
+  height: 2rem;
+  border-radius: 1rem;
 }
 
 
@@ -124,20 +148,4 @@ button:focus-visible {
 .google-logo img {
   width: 30px;
   height: 30px;
-}
-
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
 }

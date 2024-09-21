@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="location-bg">
     <!-- 呈現地圖 -->
     <MapDisplay
       :geojsonData="geojsonData"
@@ -10,14 +10,14 @@
 
     <div class="box-list">
       <!-- 搜尋地址 -->
-      <div class="box-center">
-        <input v-model="searchLocation" placeholder="請輸入新北地址" />
-        <button @click="handleSearch">搜尋</button>
+      <div class="box-search">
+        <input v-model="searchLocation" placeholder="請輸入新北地址" class="search-input" />
+        <img src="../../public/img/search.svg" @click="handleSearch" alt="fb-btn" />
       </div>
       <!-- 顯示搜尋到的地點資料 -->
       <h2>站點列表</h2>
-      <ul>
-        <li
+      <div>
+        <div
           v-for="(location, index) in nearbyList"
           :key="location.id"
           @click="selectLocation(location.id)"
@@ -25,8 +25,8 @@
         >
           <h5>{{ location.stopName }}</h5>
           <h5 class="blue-text">{{ location.distance }} 公里</h5>
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -41,7 +41,7 @@ import MapDisplay from "../components/mapDisplay.vue"; // 引入地圖組件
 export default {
   components: { MapDisplay },
   setup() {
-        const appStore = useAppStore();
+    const appStore = useAppStore();
     const geojsonData = ref(null); // 用來存放整理後的 GeoJSON 數據
     const searchLocation = ref("");
     const nearbyList = ref([]);

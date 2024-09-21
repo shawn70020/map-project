@@ -178,6 +178,6 @@ export default {
 #map {
   display: block;
   width: 100vw;
-  height: 500px;
+  height: 550px;
 }
 </style>
