@@ -20,8 +20,8 @@ const routes = [
         name: 'location',
         component: LocationView,
         beforeEnter: (to, from, next) => {
-            const isFbLogin = Cookies.get('fbStatus');
-            const isGoogleLogin = Cookies.get('googleStatus');
+            const isFbLogin = Cookies.get('fbData');
+            const isGoogleLogin = Cookies.get('googleData');
             
             // 檢查是否已經登入 Google 和 Facebook
             if (!isFbLogin || !isGoogleLogin) {
