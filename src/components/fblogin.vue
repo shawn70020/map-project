@@ -5,7 +5,7 @@
         src="../../public/img/fb-logo.svg"
         alt="fb-btn"
       />
-      使用 Facebook 登入
+      使用 Facebook 帳戶登入
     </div>
   </div>
 </template>
