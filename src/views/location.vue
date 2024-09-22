@@ -11,7 +11,11 @@
     <div class="box-list">
       <!-- 搜尋地址 -->
       <div class="box-search">
-        <input v-model="searchLocation" placeholder="請輸入新北地址" class="search-input" />
+        <input
+          v-model="searchLocation"
+          placeholder="請輸入新北地址"
+          class="search-input"
+        />
         <img
           src="../../public/img/search.svg"
           class="search-icon"
@@ -20,19 +24,21 @@
         />
       </div>
       <!-- 顯示搜尋到的地點資料 -->
-      <h2>站點列表</h2>
-      <ul>
-        <li
-          v-for="(location, index) in nearbyList"
-          :key="location.id"
-          @click="selectLocation(location.id)"
-          class="stop-item"
-          :class="{ selected: selectedIndex === index }"
-        >
-          <h5>{{ location.stopName }}</h5>
-          <h5 class="blue-text">{{ location.distance }} 公里</h5>
-        </li>
-      </ul>
+      <div>
+        <h2>站點列表</h2>
+        <ul>
+          <li
+            v-for="(location, index) in nearbyList"
+            :key="location.id"
+            @click="selectLocation(location.id)"
+            class="stop-item"
+            :class="{ selected: selectedIndex === index }"
+          >
+            <h5>{{ location.stopName }}</h5>
+            <h5 class="blue-text">{{ location.distance }} 公里</h5>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -57,7 +63,7 @@ export default {
       try {
         await fetchLocationData();
       } catch (error) {
-        console.error("API 請求失敗", error);
+        console.error(error);
       }
     });
 
@@ -78,7 +84,7 @@ export default {
           })),
         };
       } catch (error) {
-        console.error("獲取 GeoJSON 數據出錯：", error);
+        console.error("獲取都更地點數據出錯：", error);
       }
     };
 
@@ -101,7 +107,7 @@ export default {
           };
           await getNearLocationData(transforlocation.lat, transforlocation.lng);
         } catch (error) {
-          console.error("地理編碼失敗:", error);
+          console.error("地址轉換失敗:", error);
         }
       }
     };
@@ -130,7 +136,7 @@ export default {
           isTod: item.is_tod,
         }));
       } catch (error) {
-        console.error("API 呼叫失敗:", error);
+        console.error("附近都更地點獲取失敗:", error);
       }
     };
 

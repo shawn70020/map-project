@@ -18,7 +18,6 @@ export default {
     const handleCredentialResponse = (response) => {
       // 解碼 ID Token 來獲取用戶資料
       const userObject = jwtDecode(response.credential);
-      console.log("用戶基本資料:", userObject);
 
       userData.value = {
         name: userObject.name,
@@ -26,14 +25,13 @@ export default {
         picture: userObject.picture,
       };
       appStore.setGoogleUserData(userData.value);
-      console.log(userData.value);
     };
 
     onMounted(() => {
       // 初始化 Google 登入 SDK
+      const googleKey = import.meta.env.VITE_GOOGLE_CLIENT_ID;
       window.google.accounts.id.initialize({
-        client_id:
-          "1088364698806-q4g0mabjbm9vdctd5q786tkqp39c6r5r.apps.googleusercontent.com", // 替換為你的 Google Client ID
+        client_id: googleKey, // Google Client ID
         callback: handleCredentialResponse, // 每次成功登入或恢復會話時觸發
         auto_select: true, // 自動選擇已登入帳戶
       });
@@ -41,7 +39,7 @@ export default {
       // 渲染 Google 登入按鈕
       window.google.accounts.id.renderButton(
         document.getElementById("google-login-btn"),
-        { theme: "outline", size: "large" } // 可選配置
+        { theme: "outline", size: "large" }
       );
 
       // 檢查是否已經登入過

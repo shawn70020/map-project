@@ -23,7 +23,6 @@ export default {
     const statusChangeCallback = (response) => {
       if (response.status === "connected") {
         // 用戶已經登入並且授權應用
-        console.log("User is already logged in and authorized.");
         fetchFacebookUserData(); // 直接獲取用戶資料
       } else {
         // 如果用戶未登入或未授權，執行登入操作

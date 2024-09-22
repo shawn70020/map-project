@@ -6,17 +6,6 @@ import router from '../src/router'
 
 const pinia = createPinia();
 
-// Facebook SDK 初始化
-// window.fbAsyncInit = function () {
-//   FB.init({
-//     appId: "1214989089541346",
-//     cookie: true,
-//     xfbml: true,
-//     version: "v16.0",
-//   });
-// };
-
-
 // 加載 Facebook SDK
 (function (d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -28,7 +17,7 @@ const pinia = createPinia();
 
 window.fbAsyncInit = function () {
   FB.init({
-    appId: '1214989089541346', // 替換為你的 Facebook 應用 ID
+    appId: '1214989089541346', // Facebook 應用 ID
     xfbml: true,
     cookie: true, // 啟用 cookie 來管理會話
     version: 'v16.0' // Facebook Graph API 的版本

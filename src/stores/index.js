@@ -6,11 +6,6 @@ export const useAppStore = defineStore('app', {
     state: () => ({
         fbUserData: null,      // Facebook 登入資訊
         googleUserData: null,  // Google 登入資訊
-        searchQuery: '',       // 查詢地址
-        searchCoordinates: {    // 查詢經緯度
-            latitude: null,
-            longitude: null,
-        },
     }),
     actions: {
         setFbUserData(data) {
@@ -27,13 +22,6 @@ export const useAppStore = defineStore('app', {
             const googleData = Cookies.get('googleData');
             this.fbUserData = fbData ? JSON.parse(fbData) : null;
             this.googleUserData = googleData ? JSON.parse(googleData) : null;
-        },
-        setSearchQuery(query) {
-            this.searchQuery = query; // 設置查詢地址
-        },
-        setSearchCoordinates(lat, lng) {
-            this.searchCoordinates.latitude = lat; // 設置經度
-            this.searchCoordinates.longitude = lng; // 設置緯度
         },
         clearUserData() {
             this.fbUserData = null;
