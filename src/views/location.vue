@@ -45,6 +45,7 @@
       v-if="showPopup"
       :records="records"
       title="操作記錄"
+      @search="searchRecord"
       @close="showPopup = false"
     />
   </div>
@@ -117,7 +118,7 @@ export default {
             lng: transforlocation.lng,
           };
           await getNearLocationData(transforlocation.lat, transforlocation.lng);
-          appStore.setRecord(searchLocation.value)
+          appStore.setRecord(searchLocation.value);
         } catch (error) {
           alert("輸入地址無結果請換一個！");
           searchLocation.value = "";
@@ -177,7 +178,13 @@ export default {
     };
 
     const showRecord = () => {
-      records.value.length > 0 ? showPopup.value = true : alert("目前無紀錄");
+      records.value.length > 0 ? (showPopup.value = true) : alert("目前無紀錄");
+    };
+
+    const searchRecord = (record) => {
+      showPopup.value = false;
+      searchLocation.value = record;
+      handleSearch();
     };
 
     return {
@@ -192,7 +199,8 @@ export default {
       validateInput,
       showRecord,
       showPopup,
-      records
+      records,
+      searchRecord,
     };
   },
 };

@@ -21,7 +21,6 @@ export default {
     const router = useRouter();
 
     onMounted(() => {
-        console.log('進入')
       const params = new URLSearchParams(window.location.search);
       const credential = params.get("credential"); // 獲取重定向中返回的憑證
 
@@ -34,8 +33,7 @@ export default {
             picture: userObject.picture,
           };
           appStore.setGoogleUserData(userData.value);
-          console.log(userData.value)
-          console.log('重新獲取資料')
+
           router.push("/login");
         } catch (error) {
           console.error("解碼憑證時發生錯誤", error);
