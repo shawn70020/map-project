@@ -22,7 +22,7 @@
           @click="handleSearch"
           alt="search-icon"
         />
-        <button @click="showRecord" class="start-btn">紀錄</button>
+        <button @click="showRecord" class="record-btn">紀錄</button>
       </div>
       <!-- 顯示搜尋到的地點資料 -->
       <div>
@@ -193,6 +193,7 @@ export default {
       selectLocation,
       selectedLocationId,
       validateInput,
+      showRecord
     };
   },
 };
