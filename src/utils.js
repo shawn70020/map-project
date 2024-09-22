@@ -1,6 +1,4 @@
 import axios from 'axios';
-import Cookies from 'js-cookie';
-import { useAppStore } from "../stores/index.js";
 const appStore = useAppStore();
 /**
  * 將地址轉換為經緯度
@@ -25,9 +23,3 @@ export const geocodeAddress = async (address) => {
     throw error;
   }
 };
-
-export const logoutUser = () => {
-  Cookies.remove('googleData');
-  Cookies.remove('fbData');
-  appStore.clearUserData()
-}
