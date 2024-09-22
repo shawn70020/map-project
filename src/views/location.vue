@@ -191,6 +191,7 @@ export default {
       selectedLocationId,
       validateInput,
       showRecord,
+      showPopup,
       records
     };
   },
