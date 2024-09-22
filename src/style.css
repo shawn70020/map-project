@@ -54,7 +54,7 @@ button:focus-visible {
 
 }
 
-.start-btn {
+.record-btn {
   background: #ffc107;
   color: #ffffff;
   padding: 0.6rem 1.2rem;
@@ -62,7 +62,7 @@ button:focus-visible {
   margin-left: 1rem;
 }
 
-.record-btn {
+.start-btn {
   background: #0d6efd;
   color: #ffffff;
   padding: 0.8rem 1.5rem;

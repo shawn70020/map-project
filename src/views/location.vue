@@ -43,7 +43,6 @@
     </div>
     <RecordPopup
       v-if="showPopup"
-      :visible="showPopup"
       :records="records"
       title="操作記錄"
       @close="showPopup = false"
@@ -137,8 +136,7 @@ export default {
             lng,
           }
         );
-        console.log(response);
-        console.log(response.result);
+
         // 整理站點數據
         nearbyList.value = response.data.result.map((item) => ({
           id: item.id,
@@ -180,6 +178,7 @@ export default {
 
     const showRecord = () => {
       console.log(records.value)
+      console.log(records.value.length)
       records.value.length > 0 ? showPopup.value = true : alert("目前無紀錄");
     };
 

@@ -1,6 +1,6 @@
 <template>
   <!-- 彈出式窗口 -->
-  <div v-if="visible" class="popup-overlay" @click.self="closePopup">
+  <div class="popup-overlay" @click.self="closePopup">
     <div class="popup">
       <h2>{{ title }}</h2>
       <ul>
@@ -16,22 +16,18 @@
 <script>
 export default {
   props: {
-    visible: {
-      type: Boolean,
-      required: true, // 是否顯示彈窗
-    },
     records: {
       type: Array,
       required: true, // 記錄數據列表
     },
     title: {
       type: String,
-      default: '記錄列表', // 彈窗標題
+      default: "記錄列表", // 彈窗標題
     },
   },
   methods: {
     closePopup() {
-      this.$emit('close'); // 通知父組件關閉彈窗
+      this.$emit("close"); // 通知父組件關閉彈窗
     },
   },
 };
