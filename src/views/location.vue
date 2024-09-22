@@ -17,7 +17,7 @@
           class="search-input"
         />
         <img
-          src="../../public/img/search.svg"
+          src="/img/search.svg"
           class="search-icon"
           @click="handleSearch"
           alt="search-icon"

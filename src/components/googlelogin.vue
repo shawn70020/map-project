@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="google-login-btn" class="google-btn">
-      <img src="../../public/img/google-logo.png" alt="google-btn" />使用 Google 登入
+      <img src="/img/google-logo.png" alt="google-btn" />使用 Google 登入
     </div>
   </div>
 </template>
@@ -29,9 +29,8 @@ export default {
 
     onMounted(() => {
       // 初始化 Google 登入 SDK
-      const googleKey = import.meta.env.VITE_GOOGLE_CLIENT_ID;
       window.google.accounts.id.initialize({
-        client_id: googleKey, // Google Client ID
+        client_id: "1088364698806-q4g0mabjbm9vdctd5q786tkqp39c6r5r.apps.googleusercontent.com", // Google Client ID
         callback: handleCredentialResponse, // 每次成功登入或恢復會話時觸發
         auto_select: true, // 自動選擇已登入帳戶
       });
