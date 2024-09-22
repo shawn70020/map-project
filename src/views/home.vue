@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>新北市都市更新地點查詢</h1>
-    <button @click="toLocation">開始</button>
+    <button @click="toLocation" class="start-btn">開始</button>
   </div>
 </template>
 

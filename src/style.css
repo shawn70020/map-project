@@ -54,6 +54,13 @@ button:focus-visible {
 
 }
 
+.start-btn {
+  background: #0d6efd;
+  color: #ffffff;
+  padding: 0.8rem 1.5rem;
+  text-align: center;
+}
+
 .location-bg {
   background-color: #e9e7e7;
   min-height: 100vh;
@@ -129,6 +136,7 @@ button:focus-visible {
   align-items: center;
   position: relative;
   font-size: 14px;
+  cursor:pointer;
 }
 
 .fb-logo img {

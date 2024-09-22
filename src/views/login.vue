@@ -1,5 +1,5 @@
 <template>
-  <div class='container'>
+  <div class="container">
     <h2>請確保登入google且綁定facebook</h2>
     <!-- 登入選項 -->
     <div>
@@ -18,7 +18,7 @@
 
     <div v-if="isGoogleLoggedIn && isFacebookLoggedIn">
       <p>您已經成功登入 Google 和 Facebook!</p>
-      <button><router-link to="/location">繼續</router-link></button>
+      <button @click="toLocation" class="start-btn">開始</button>
     </div>
   </div>
 </template>
@@ -27,7 +27,7 @@
 import { computed } from "vue";
 import GoogleLogin from "../components/googlelogin.vue"; // 引入google組件
 import FacebookLogin from "../components/fblogin.vue"; // 引入臉書組件
-import { useAppStore } from "../stores/index.js"; // 引入 Pinia store
+import { useAppStore } from "../stores/index.js";
 import { useRouter } from "vue-router";
 
 export default {
@@ -35,30 +35,29 @@ export default {
   setup() {
     const appStore = useAppStore();
     const router = useRouter();
-    // 使用 computed 來自動響應 Pinia store 中的狀態變化
+    const toLocation = () => {
+      router.push("/location");
+    };
+
     const isGoogleLoggedIn = computed(() => appStore.isGoogleLoggedIn);
     const isFacebookLoggedIn = computed(() => appStore.isFacebookLoggedIn);
 
-    const googleData = computed(() => appStore.googleUserData);
-    const fbData = computed(() => appStore.fbUserData);
-
     return {
-      isGoogleLoggedIn, // 使用 getter 獲取 Google 登入狀態
-      isFacebookLoggedIn, // 使用 getter 獲取 Facebook 登入狀態
-      googleData,
-      fbData,
+      toLocation,
+      isGoogleLoggedIn,
+      isFacebookLoggedIn,
     };
   },
 };
 </script>
 
 <style scoped>
-.container{
-    display:flex;
-    flex-direction: column;
-      align-items: center;
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.mb-1{
-    margin-bottom:1rem;
+.mb-1 {
+  margin-bottom: 1rem;
 }
 </style>
