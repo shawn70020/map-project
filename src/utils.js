@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-
+import { useAppStore } from "../stores/index.js";
+const appStore = useAppStore();
 /**
  * 將地址轉換為經緯度
  * @param {string} address - 要查詢的地址
@@ -28,4 +29,5 @@ export const geocodeAddress = async (address) => {
 export const logoutUser = () => {
   Cookies.remove('googleData');
   Cookies.remove('fbData');
+  appStore.clearUserData()
 }

@@ -23,7 +23,6 @@
           alt="search-icon"
         />
         <button @click="showRecord" class="record-btn">紀錄</button>
-        <button @click="logoutHandler" class="logout-btn">登出</button>
       </div>
       <!-- 顯示搜尋到的地點資料 -->
       <div>
@@ -190,10 +189,6 @@ export default {
       handleSearch();
     };
 
-    const logoutHandler = async () => {
-      await logoutUser()
-      router.push("/");
-    };
 
     return {
       searchLocation,
@@ -209,7 +204,6 @@ export default {
       showPopup,
       records,
       searchRecord,
-      logoutHandler
     };
   },
 };

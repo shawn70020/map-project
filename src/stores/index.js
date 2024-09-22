@@ -37,10 +37,10 @@ export const useAppStore = defineStore('app', {
     },
     getters: {
         isGoogleLoggedIn(state) {
-            return !!state.googleUserData?.name; // 返回 Google 登入狀態
+            return !!state.googleUserData; // 返回 Google 登入狀態
         },
         isFacebookLoggedIn(state) {
-            return !!state.fbUserData?.name; // 返回 Facebook 登入狀態
+            return !!state.fbUserData; // 返回 Facebook 登入狀態
         },
     },
 });
