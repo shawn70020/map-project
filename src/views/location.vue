@@ -177,8 +177,6 @@ export default {
     };
 
     const showRecord = () => {
-      console.log(records.value)
-      console.log(records.value.length)
       records.value.length > 0 ? showPopup.value = true : alert("目前無紀錄");
     };
 
@@ -192,7 +190,8 @@ export default {
       selectLocation,
       selectedLocationId,
       validateInput,
-      showRecord
+      showRecord,
+      records
     };
   },
 };
