@@ -6,6 +6,7 @@ export const useAppStore = defineStore('app', {
     state: () => ({
         fbUserData: null,      // Facebook 登入資訊
         googleUserData: null,  // Google 登入資訊
+        searchRecord: []
     }),
     actions: {
         setFbUserData(data) {
@@ -22,6 +23,12 @@ export const useAppStore = defineStore('app', {
             const googleData = Cookies.get('googleData');
             this.fbUserData = fbData ? JSON.parse(fbData) : null;
             this.googleUserData = googleData ? JSON.parse(googleData) : null;
+        },
+        setRecord(address) {
+            if (!this.searchRecord.includes(address)) {
+                this.searchRecord.push(address);
+                console.log(`地址已新增: ${address}`);
+            }
         },
         clearUserData() {
             this.fbUserData = null;

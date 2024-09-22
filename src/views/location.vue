@@ -22,6 +22,7 @@
           @click="handleSearch"
           alt="search-icon"
         />
+        <button @click="showRecord" class="start-btn">紀錄</button>
       </div>
       <!-- 顯示搜尋到的地點資料 -->
       <div>
@@ -40,18 +41,26 @@
         </ul>
       </div>
     </div>
+    <RecordPopup
+      v-if="showPopup"
+      :visible="showPopup"
+      :records="records"
+      title="操作記錄"
+      @close="showPopup = false"
+    />
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { geocodeAddress } from "../utils.js";
 import { useAppStore } from "../stores/index.js";
 import MapDisplay from "../components/mapDisplay.vue"; // 引入地圖組件
+import RecordPopup from "../components/record.vue";
 
 export default {
-  components: { MapDisplay },
+  components: { MapDisplay, RecordPopup },
   setup() {
     const appStore = useAppStore();
     const geojsonData = ref(null); // 用來存放整理後的 GeoJSON 數據
@@ -59,6 +68,9 @@ export default {
     const nearbyList = ref([]);
     const selectedLocationId = ref(null);
     const userLocation = ref({});
+    const showPopup = ref(false);
+
+    const records = computed(() => appStore.searchRecord);
     onMounted(async () => {
       try {
         await fetchLocationData();
@@ -106,7 +118,10 @@ export default {
             lng: transforlocation.lng,
           };
           await getNearLocationData(transforlocation.lat, transforlocation.lng);
+          appStore.setRecord(searchLocation.value)
         } catch (error) {
+          alert("輸入地址無結果請換一個！");
+          searchLocation.value = "";
           console.error("地址轉換失敗:", error);
         }
       }
@@ -161,6 +176,11 @@ export default {
         searchLocation.value = "";
         return false;
       }
+    };
+
+    const showRecord = () => {
+      console.log(records.value)
+      records.value.length > 0 ? showPopup.value = true : alert("目前無紀錄");
     };
 
     return {
