@@ -1,5 +1,4 @@
 import axios from 'axios';
-const appStore = useAppStore();
 /**
  * 將地址轉換為經緯度
  * @param {string} address - 要查詢的地址
