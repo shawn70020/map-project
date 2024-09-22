@@ -23,6 +23,7 @@
           alt="search-icon"
         />
         <button @click="showRecord" class="record-btn">紀錄</button>
+        <button @click="logoutHandler" class="logout-btn">登出</button>
       </div>
       <!-- 顯示搜尋到的地點資料 -->
       <div>
@@ -54,8 +55,9 @@
 <script>
 import axios from "axios";
 import { ref, onMounted, computed } from "vue";
-import { geocodeAddress } from "../utils.js";
+import { geocodeAddress, logoutUser } from "../utils.js";
 import { useAppStore } from "../stores/index.js";
+import { useRouter } from "vue-router";
 import MapDisplay from "../components/mapDisplay.vue"; // 引入地圖組件
 import RecordPopup from "../components/record.vue";
 
@@ -63,6 +65,7 @@ export default {
   components: { MapDisplay, RecordPopup },
   setup() {
     const appStore = useAppStore();
+    const router = useRouter();
     const geojsonData = ref(null); // 用來存放整理後的 GeoJSON 數據
     const searchLocation = ref("");
     const nearbyList = ref([]);
@@ -187,6 +190,11 @@ export default {
       handleSearch();
     };
 
+    const logoutHandler = async () => {
+      await logoutUser()
+      router.push("/");
+    };
+
     return {
       searchLocation,
       fetchLocationData,
@@ -201,6 +209,7 @@ export default {
       showPopup,
       records,
       searchRecord,
+      logoutHandler
     };
   },
 };

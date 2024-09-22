@@ -76,6 +76,14 @@ button:focus-visible {
   text-align: center;
 }
 
+.logout-btn{
+  background: #dc3545;
+  color: #ffffff;
+  padding: 0.6rem 1.2rem;
+  text-align: center;
+  margin-left: 1rem;
+}
+
 .location-bg {
   background-color: #e9e7e7;
   min-height: 100vh;

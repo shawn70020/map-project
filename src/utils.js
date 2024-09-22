@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 /**
  * 將地址轉換為經緯度
@@ -7,7 +8,7 @@ import axios from 'axios';
  */
 export const geocodeAddress = async (address) => {
   const apiKey = '70e33b2171f14379a4ab0d23ce25e3f5'
-  
+
   const url = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(address)}&key=${apiKey}&countrycode=TW`;
 
   try {
@@ -23,3 +24,8 @@ export const geocodeAddress = async (address) => {
     throw error;
   }
 };
+
+export const logoutUser = () => {
+  Cookies.remove('googleData');
+  Cookies.remove('fbData');
+}
