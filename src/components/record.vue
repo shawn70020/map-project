@@ -35,7 +35,7 @@ export default defineComponent({
     const { records, title } = toRefs(props);
 
     const closePopup = () => {
-      emit("close"); 
+      emit("close");
     };
 
     const handleItemClick = (record) => {
@@ -74,6 +74,10 @@ export default defineComponent({
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
+h2 {
+  color: #000;
+}
+
 ul {
   max-height: 300px;
   overflow-y: auto;
@@ -85,6 +89,7 @@ ul {
 li {
   margin-bottom: 10px;
   color: #000;
+  cursor: pointer;
 }
 
 button {
